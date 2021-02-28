@@ -1,4 +1,8 @@
 {
-  "name": "name",
-  "id": "Some"
+  "Post": {
+    "title": "string",
+    "views": "int",
+    "published": "boolean",
+    "createdAt": "date"
+  }
 }

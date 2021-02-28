@@ -1,0 +1,17 @@
+.input{
+  padding: 0.6rem 1.2rem;
+  font-size: 0.8rem;
+  border-radius: 8px;
+  box-sizing: border-box;
+  /* outline: none; */
+  background-color: var(--bg-secondary-color);
+}
+
+/* .input:focus{
+  border: 2px solid var(--focus-color);
+} */
+
+.input.outlined{
+  border: 2px solid red
+}
+

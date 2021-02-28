@@ -1,0 +1,15 @@
+.input_label{
+  font-size: 0.8rem;
+  margin: 0.6rem 0;
+  /* text-transform: uppercase; */
+  /* font-weight: bold; */
+  color: var(--font-primary-color);
+}
+
+.input_label.secondary{
+  color: var(--font-secondary-color)
+}
+
+.input_label.error{
+  color: rgb(255, 91, 91)
+}

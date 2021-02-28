@@ -1,0 +1,43 @@
+button.input_button{
+  padding: 0.6rem 1.2rem;
+  border-radius: 99999999px;
+  font-weight: bold;
+  min-width: 200px;
+
+  margin: 1em 0;
+}
+
+
+button.cta_button{
+  background-color: var(--cta-color);
+  color: var(--cta-font-color);
+}
+
+button.cta_button:hover{
+  background-color: var(--cta-color);
+  color: var(--cta-font-color);
+}
+
+.outline_button{
+  background-color: var(--bg-primary-color);
+  color:var(--font-secondary-color);
+  border: 2px solid var(--font-secondary-color);
+}
+
+.input_button+a .input_button, .input_button+.input_button{
+  margin-left: 1em;
+}
+
+@media only screen and (max-width: calc( 520px )) {
+  .input_button+a .input_button{
+    margin-left: 0;
+  }
+
+  .input_button,a>.input_button{
+    width: 100%;
+  }
+
+}
+
+
+

@@ -1,10 +1,50 @@
+:root {
+  --font-base-size: 18px;
+
+  --focus-color: black;
+  
+  --cta-color: rgb(52, 175, 159);
+  --cta-font-color: white;
+
+  --bg-primary-color: #fff;
+  --bg-secondary-color: #F0F0F0;
+
+  --font-primary-color: rgb(9, 6, 37);
+  --font-secondary-color: rgb(124 121 148);
+
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+html,
 body {
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  
+  font-family: inter,-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-size: var(--font-base-size);
+  color: var(--font-primary-color);
+
+}
+
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+input{
+  border:none
+}
+
+button{
+  border: none;
 }
 
 code {

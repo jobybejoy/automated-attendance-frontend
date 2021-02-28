@@ -1,16 +1,11 @@
 import { useState } from "react"
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import useToken from "./useToken";
 
 import Login from "../../pages/Auth/Login"
 import ForgotPassword from "../../pages/Auth/ForgotPassword";
-import useToken from "./useToken";
+import Home from "../../pages/Home"
 
-
-function Home() {
-  return (
-    <h2>Home</h2>
-  );
-}
 
 // Authenticated Routes HOC
 const RequireAuth = ({ children, token }) => {

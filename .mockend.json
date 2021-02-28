@@ -1,8 +1,8 @@
 {
-  "Post": {
-    "title": "string",
-    "views": "int",
-    "published": "boolean",
+  "User": {
+    "name": "string",
+    "email": "string",
+    "department": "string",
     "createdAt": "date"
   }
 }

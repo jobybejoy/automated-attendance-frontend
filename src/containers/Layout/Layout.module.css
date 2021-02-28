@@ -1,0 +1,11 @@
+.layout_container{
+  width: 100%;
+  max-width: var(--container-max-width);
+  display: flex;
+
+  padding: 0 1em;
+
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin: auto;
+}

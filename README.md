@@ -1,7 +1,7 @@
 # To get the app runnning
 Clone the repo
 ```
-clone https://github.com/jobybejoy/automated-attendance-frontend ./
+git clone https://github.com/jobybejoy/automated-attendance-frontend ./
 ```
 
 `cd` into the project 

@@ -2,9 +2,13 @@ import { useState } from "react"
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import useToken from "./useToken";
 
+// Public Routes
 import Login from "../../pages/Auth/Login"
 import ForgotPassword from "../../pages/Auth/ForgotPassword";
+
+// Authenticated routes
 import Home from "../../pages/Home"
+import Profile from "../../pages/Profile"
 
 
 // Authenticated Routes HOC
@@ -28,6 +32,7 @@ function App() {
 
           <RequireAuth token={token}>
             <Route path="/" exact component={Home} />
+            <Route path="/profile" exact component={Profile} />
           </RequireAuth>
 
         </Switch>

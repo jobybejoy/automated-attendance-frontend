@@ -9,6 +9,15 @@ export default function Layout({ children }) {
         {children}
       </div>
     </>
+  )
+}
 
+export function LayoutOnly({ children }) {
+  return (
+    <>
+      <div className={styles.layout_container}>
+        {children}
+      </div>
+    </>
   )
 }

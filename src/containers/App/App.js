@@ -9,7 +9,7 @@ import ForgotPassword from "../../pages/Auth/ForgotPassword";
 // Authenticated routes
 import Home from "../../pages/Home"
 import Profile from "../../pages/Profile"
-
+import StudentAttendance from "../../pages/Attendance/Student/index"
 
 // Authenticated Routes HOC
 const RequireAuth = ({ children, token }) => {
@@ -32,7 +32,8 @@ function App() {
 
           <RequireAuth token={token}>
             <Route path="/" exact component={Home} />
-            <Route path="/profile" exact component={Profile} />
+            <Route path="/profile" component={Profile} />
+            <Route path="/:department/:course_number/session/:session_id" component={StudentAttendance} />
           </RequireAuth>
 
         </Switch>

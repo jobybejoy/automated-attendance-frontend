@@ -1,0 +1,66 @@
+.attendance_container{
+  /* display: flex; */
+  display: grid;
+  grid-template-columns: 2fr minmax(250px, 1fr);
+
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+@media only screen and (max-width: 960px) {
+  .attendance_container{
+    grid-template-columns: 1fr;
+  }
+  .summary_container{
+    margin-top: 4rem;
+    margin-bottom: 4rem;  
+  }
+}
+
+.attendance_calender{
+  width: 100%;
+  max-width: 640px;
+}
+
+
+.summary_container{
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+
+  flex-direction: column;
+
+  /* width: 40%; */
+  width: 340px;
+
+  /* margin-bottom: 3.5rem; */
+}
+
+.summary_section_title{
+  color:var(--font-secondary-color);
+  font-weight: 700;
+  margin-left: 1.5rem;
+  
+}
+
+.summary_card{
+  padding: 1rem;
+  /* margin: 1rem; */
+}
+
+.summary_card .summary_title_very_large,.summary_title_large{
+  font-size: 5rem;
+  font-weight: 900;
+  margin: 0 0.5rem;
+}
+
+.summary_title_large{
+  font-size: 4rem;
+}
+
+.summary_subheading{
+  margin-left: 0.8rem;
+  display: flex;
+  color:var(--font-secondary-color);
+}

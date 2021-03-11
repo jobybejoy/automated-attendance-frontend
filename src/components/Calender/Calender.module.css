@@ -1,0 +1,148 @@
+.calender_container{
+
+  width: 100%;
+  max-width: 640px;
+
+  display: grid;
+  grid-template-columns: repeat(7,1fr);
+  /* grid-template-rows: repeat(6,80px); */
+  grid-gap: 0.5rem;
+}
+
+.calender_header_container{
+  display: flex; 
+  justify-content: space-between;
+  align-items: center;
+  width: 350px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.button_month_change{
+  width: 48px;
+  height: 48px;
+  border-radius: 4px;
+}
+
+.calender_header_year{
+  font-size: 0.8rem;
+}
+
+.calender_header_month{
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.calender_days_of_week{
+  margin-bottom: 0.5rem;
+}
+
+.calender_item,.calender_item_filler{
+  background-color: var(--bg-secondary-color);
+
+  height: 72px;
+
+  box-sizing: border-box;
+  padding-right: 0.5rem;
+  padding-bottom: 0.3rem;
+
+  border-radius: 8px ;
+/* 
+  padding-top: 2rem;
+  padding-left: 1rem; */
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+
+  position: relative;
+}
+
+.calender_item_percentage .right_connored{
+  font-size: 0.7rem;
+  align-self: flex-end;
+}
+
+.calender_item_filler{
+  /* background-color: #f9f9f9; */
+  background-color: var(--bg-primary-color);
+}
+
+.calender_item.attended{
+  background-color: #8CF296;
+}
+
+.calender_item.absent{
+  background-color: #FA6D6D;
+}
+
+.calender_item.today{
+  border: 2px solid var(--font-primary-color);
+}
+
+.calender_item.today::before{
+  width: calc(100% - 4px);
+  border-radius: 8px;
+  color: var(--font-primary-color);
+  text-align: center;
+  position: absolute;
+  font-size: 0.5rem;
+  font-weight: bold;
+  top: 2px;
+  left: 2px;
+  content: "TODAY";
+}
+
+/* Faculty Attendance Page */
+
+.calender_item_percentage{
+  background-color: var(--bg-secondary-color);
+  height: 72px;
+  box-sizing: border-box;
+  padding: 0.25rem 0.45rem;
+
+  border-radius: 8px ;
+/* 
+  padding-top: 2rem;
+  padding-left: 1rem; */
+
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: column;
+}
+
+.calender_item_percentage.today{
+  background-color: var(--cta-color);
+  position: relative;
+}
+
+.calender_item_percentage.today::before{
+  width: calc(100% - 4px);
+  border-radius: 8px;
+  color: rgba(255,255,255,0.5);
+  text-align: center;
+  position: absolute;
+  font-size: 0.5rem;
+  font-weight: bold;
+  top: 2px;
+  left: 2px;
+  content: "TODAY";
+}
+
+.attn_percentage{
+  
+  border: 2px solid var(--font-primary-color);
+  text-align: right;
+  padding-right: 0.4rem;
+}
+
+
+.right_centered{
+  text-align: right;
+  padding-right: 8px;
+  font-weight: bold;
+  padding-bottom: 6px;
+  width: 100%;
+}

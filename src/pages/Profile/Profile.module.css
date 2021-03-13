@@ -1,5 +1,8 @@
 .profile_container{
-  padding-top: 5rem;
+  padding-top: 1rem;
+  padding-bottom: 3rem;
+  max-width: 520px;
+  position: relative;
 }
 
 .profile_image_container{
@@ -58,3 +61,12 @@
   color: var(--font-secondary-color);
 }
 
+.profile_edit_btn{
+  /* Overriding padding from Button */
+  padding: 0.4rem !important;
+  min-width: 100px !important;
+  position: absolute;
+  right: 0;
+  border: 2px solid black;
+  width: 0;
+}

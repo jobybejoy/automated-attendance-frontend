@@ -1,21 +1,53 @@
+import { useHistory } from "react-router-dom";
+import { useContext } from 'react';
+
 import styles from "./Profile.module.css"
 import { LayoutOnly as Layout } from "../../containers/Layout"
 
+import { Button } from '../../components/Button'
+import { Link } from "react-router-dom"
+
 import face_emoji from "../../assets/images/icons/face.svg"
+import back_icon from "../../assets/images/icons/navigate_before.svg"
 
-export default function Profile() {
+import { UserContext } from "../../context/UserContext"
 
-  const user = {
-    name: "John doe",
-    email: "email@njit.edu",
-    department: "Computer Science",
-    phone_number: "+1 551 263 9920",
-    address: "Some place, Sowhere\nState country\nzip"
+
+export default function ProfileWrapper() {
+  const { user, isLoading, isError } = useContext(UserContext)
+
+  if (isLoading) {
+    return "Loading ..."
   }
+
+  if (isError) {
+    return (
+      <Layout>
+        <div className={styles.profile_container}>
+          <h2 className={styles.profile_name}>
+            User Not Found
+        </h2>
+        </div>
+      </Layout>
+    )
+  }
+
+  return <Profile user={user} />
+}
+
+export function Profile({ user }) {
+
+  const history = useHistory();
+
+  // const { user, isError, isLoading } = useUser()
 
   return (
     <Layout>
       <div className={styles.profile_container}>
+        <Button onClick={() => { history.push("/") }} style={{ paddingRight: "1rem", marginBottom: "2rem" }}>
+          <img src={back_icon} alt="Back" /> Go Back
+        </Button>
+        <Link to="/profile/edit"><Button className={styles.profile_edit_btn} value="edit" /></Link>
         <div className={styles.profile_image_container}>
           <img src={face_emoji} alt="" />
         </div>
@@ -38,6 +70,6 @@ export default function Profile() {
         </h3>
       </div>
 
-    </Layout>
+    </Layout >
   )
 }

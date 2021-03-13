@@ -1,20 +1,25 @@
+import { useContext } from "react"
 import Layout from "../../containers/Layout"
 import SessionsList from "../../components/Session/SessionList/index"
+import { SessionsContext } from "../../context/SessionsContext"
 
-export default function Home() {
+export default function HomeWrapper(params) {
 
-  const sessions = [
-    { course_id: "CS 123", session_id: "111", course_name: "Data Structures and Algorithms", term: "Fall 2020", url: "/cs/123/session/111" },
-    { course_id: "CS 656", session_id: "001", course_name: "Machine Learning", term: "Fall 2020", url: "/cs/123/session/111" },
-    { course_id: "CS 123", session_id: "101", course_name: "Data Structures and Algorithms", term: "Fall 2020", url: "/cs/123/session/111" }
-  ]
+  const { sessions, isError, isLoading } = useContext(SessionsContext)
+
+  if (isError) { return "Error - " + isError }
+  if (isLoading) { return "Loading" }
+
+  return <Home sessions={sessions} />
+}
+
+
+export function Home({ sessions }) {
 
   return (
     <Layout>
       <h5>Sessions</h5>
-
       <SessionsList sessions={sessions} />
-
     </Layout >
   );
 }

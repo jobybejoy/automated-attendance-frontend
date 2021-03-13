@@ -20,4 +20,10 @@ function Input({ className, ...props }) {
   )
 }
 
+export function TextArea({ className, value, ...props }) {
+  return (
+    <textarea className={styles.input + " " + styles[className]} value={value} {...props}></textarea>
+  )
+}
+
 export default Input 

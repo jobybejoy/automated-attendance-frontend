@@ -1,6 +1,6 @@
 .input{
-  padding: 0.6rem 1.2rem;
-  font-size: 0.8rem;
+  padding: 1rem 1.4rem;
+  font-size: 0.9rem;
   border-radius: 8px;
   box-sizing: border-box;
   /* outline: none; */
@@ -13,5 +13,19 @@
 
 .input.outlined{
   border: 2px solid red
+}
+
+.input:disabled{
+  cursor: not-allowed;
+  /* background-color: var(--bg-primary-color); */
+  opacity: 0.8;
+  
+}
+
+textarea.input{
+  padding: 1rem 1.4rem;
+  min-height: 160px;
+  border:none;
+  resize:none;
 }
 

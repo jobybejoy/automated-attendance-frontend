@@ -2,8 +2,9 @@
   --font-base-size: 18px;
   --container-max-width: 1200px;
 
-  --focus-color: black;
+  --focus-color: red;
   
+  /* Purple CTA  #983798 */
   --cta-color: rgb(52, 175, 159);
   --cta-font-color: white;
 
@@ -15,7 +16,7 @@
 
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
 
 html,
 body {

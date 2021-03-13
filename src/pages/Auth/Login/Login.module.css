@@ -18,24 +18,3 @@
   margin-top: 20vh;
 }
 
-.box_container h2,.box_container .input_label{
-  /* padding-left: 1.2rem; */
-}
-
-.box_container .input_button{
-  margin: 0.5rem 0;
-}
-
-.input_group{
-  display: flex;
-  flex-direction: column;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
-.button_group{
-  display: flex;
-  /* justify-content: space-between; */
-  flex-wrap: wrap;
-}
-

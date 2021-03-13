@@ -5,12 +5,18 @@ import { Link } from "react-router-dom"
 
 import Label from "../../../components/Form/Label"
 import Input from "../../../components/Form/Input"
+import { InputGroup } from "../../../components/Form/Containers"
 
-import { CTA_Button, Outline_Button } from "../../../components/Button"
+import ButtonGroup from "../../../components/Button/ButtonGroup"
+import { CTA_Button, OutlineButton } from "../../../components/Button"
 
+import useToken from "../../../containers/App/useToken"
+import { useHistory } from "react-router-dom";
+
+import { API_BASE } from "../../../api/base"
 
 async function forgotPasswordUser(credentials) {
-  return fetch('http://localhost:8080/forgot/password', {
+  return fetch(`${API_BASE}/forgot/password`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -22,6 +28,13 @@ async function forgotPasswordUser(credentials) {
 
 
 export default function ForgotPassword() {
+  const history = useHistory();
+
+  // Redirect to Home if Authenticated
+  const { token } = useToken();
+  if (token) {
+    history.push("/")
+  }
   const [email, setEmail] = useState("");
 
   const handleSubmit = async e => {
@@ -38,7 +51,7 @@ export default function ForgotPassword() {
         <p>A magic link would be sent to your email address</p>
 
         <form onSubmit={handleSubmit}>
-          <div className={styles.input_group}>
+          <InputGroup>
             <Label htmlFor="email" className={styles.input_label}>Email</Label>
             <Input type="email" name="email"
               placeholder="jane@email.com"
@@ -46,14 +59,14 @@ export default function ForgotPassword() {
               value={email}
               required
             />
-          </div>
+          </InputGroup>
 
-          <div className={styles.button_group}>
+          <ButtonGroup>
             <CTA_Button type="submit" value="Reset" />
             <Link to="/auth/login">
-              <Outline_Button value="Go to Login" />
+              <OutlineButton value="Go to Login" />
             </Link>
-          </div>
+          </ButtonGroup>
         </form>
 
       </div>

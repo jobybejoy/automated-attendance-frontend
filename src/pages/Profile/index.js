@@ -52,16 +52,16 @@ export function Profile({ user }) {
           <img src={face_emoji} alt="" />
         </div>
         <h2 className={styles.profile_name}>
-          {user.name}
+          {user.first_name + " " + user.last_name}
         </h2>
         <h3 className={styles.profile_email}>
           <a href={"mailto:" + user.email} target="_blank" rel="noopener noreferrer">{user.email}</a>
         </h3>
         <h3 className={styles.profile_department}>
-          {user.department}
+          {user.dept_name}
         </h3>
         <h3 className={styles.profile_phone}>
-          <a href={"tel:" + user.phone_number} target="_blank" rel="noopener noreferrer">{user.phone_number}</a>
+          <a href={"tel:" + user.phone_no} target="_blank" rel="noopener noreferrer">{user.phone_no}</a>
         </h3>
         <h3 className={styles.profile_address}>
           <pre>

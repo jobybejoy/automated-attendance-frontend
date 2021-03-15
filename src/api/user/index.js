@@ -1,12 +1,19 @@
 import useSWR from 'swr'
-import { API_BASE } from "../base"
 
-const fetcher = (...args) => fetch(...args).then(res => res.json())
+import { GET_USER_URL } from "../urls"
+
+import useToken from "../auth/useToken"
+
+const fetcher = (url, token) => fetch(url, {
+  headers: { Authorization: `token ${token}` }
+})
+  .then(res => res.json())
 
 // Fetches the User using SWR
 export default function useUser() {
   console.log("User API fetch invoked");
-  const { data, error } = useSWR(`${API_BASE}/user`, fetcher)
+  const { token } = useToken()
+  const { data, error } = useSWR([GET_USER_URL, token], fetcher)
 
   return {
     user: data,

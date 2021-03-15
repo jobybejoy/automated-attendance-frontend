@@ -4,7 +4,7 @@
 export const getDaysinMonth = (count) => {
   const days = []
   for (let c = 1; c <= count; c++) {
-    days.push({ date: c, type: "default", percentage: "10%" })
+    days.push({ date: c, type: "default", percentage: undefined })
   }
   return days
 }
@@ -25,7 +25,7 @@ export const markAttendedDays = (cal_days, marked_days, current_month, current_y
       // const att = marked_days.attended == true ? "attended" : "attended"
       const prevState = cal_days[date]
       // console.log({ prevState });
-      cal_days[date] = { ...prevState, type: marked_day.type }
+      cal_days[date] = { ...prevState, type: marked_day.type, percentage: `${marked_day.percentage}%` }
     }
   })
   return cal_days

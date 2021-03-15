@@ -9,29 +9,11 @@ import { InputGroup } from "../../../components/Form/Containers"
 import ButtonGroup from "../../../components/Button/ButtonGroup"
 import { CTA_Button, OutlineButton } from "../../../components/Button"
 
-
-import useToken from "../../../containers/App/useToken"
-
+import useToken from "../../../api/auth/useToken"
 
 import { useHistory } from "react-router-dom";
 
-import { API_BASE } from "../../../api/base"
-
-
-
-async function loginUser(credentials) {
-  return await fetch(`${API_BASE}/auth/login`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(credentials)
-  })
-    .then(data => data.json())
-  // .then(data => { return { token: "TEST_TOKEN" } }).catch(err => { return { token: "TEST_TOKEN" } })
-
-}
-
+import loginUser from "../../../api/auth/login"
 
 export default function Login({ setToken }) {
 
@@ -44,7 +26,7 @@ export default function Login({ setToken }) {
     history.push("/")
   }
 
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const [disabled, setDisabled] = useState(false)
@@ -53,7 +35,7 @@ export default function Login({ setToken }) {
     e.preventDefault();
     setDisabled(true)
     const token = await loginUser({
-      email,
+      username,
       password
     });
     console.log(typeof (setToken));
@@ -74,15 +56,15 @@ export default function Login({ setToken }) {
 
         <form onSubmit={handleSubmit}>
           <InputGroup>
-            <Label htmlFor="email">Email</Label>
-            <Input type="email" name="email"
-              placeholder="jane@email.com"
-              onChange={e => setEmail(e.target.value)}
-              value={email}
+            <Label htmlFor="username">Username</Label>
+            <Input type="text" name="username"
+              placeholder="johnDo1112"
+              onChange={e => setUsername(e.target.value)}
+              value={username}
               disabled={disabled}
               required
             />
-            <Helper>Enter email address here</Helper>
+            {/* <Helper>Enter email address here</Helper> */}
           </InputGroup>
           <InputGroup>
             <Label htmlFor="password" >Password</Label>

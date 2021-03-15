@@ -11,7 +11,7 @@ import ResetPassword from "../../pages/Auth/ResetPassword"
 import Home from "../../pages/Home"
 import Profile from "../../pages/Profile"
 import EditProfile from "../../pages/Profile/Edit"
-import StudentAttendance from "../../pages/Attendance/Student/index"
+import AttendancePage from "../../pages/Attendance/index"
 
 import useToken from "../../api/auth/useToken";
 import useUser from "../../api/user"
@@ -64,7 +64,7 @@ function App() {
             <ProviderWrapper token={token}>
 
               <Route path="/" exact component={() => <Home />} />
-              <Route path="/:department/:course_number/session/:session_id" component={() => <StudentAttendance />} />
+              <Route path="/:department/:course_number/session/:session_id" component={() => <AttendancePage />} />
 
               <Route path="/profile" exact component={() => <Profile />} />
               <Route path="/profile/edit" exact component={() => <EditProfile />} />

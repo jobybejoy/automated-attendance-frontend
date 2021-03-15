@@ -1,12 +1,12 @@
 import Layout from "../../../containers/Layout"
-import styles from "./StudentAttendance.module.css"
+import styles from "../Student/StudentAttendance.module.css"
 
 import { useContext } from "react"
 import { useParams } from 'react-router-dom';
 
 import Calender from "../../../components/Calender"
 import Summary from "./Summary"
-import { CalenderItem } from "../../../components/Calender/DateElement"
+import { PercentageCalenderItem } from "../../../components/Calender/DateElement"
 
 import { SessionsContext } from "../../../context/SessionsContext"
 
@@ -18,7 +18,7 @@ const findSession = (sessions, department, course_number, session_id) => {
   }
 }
 
-export default function StudentAttendanceWrapper() {
+export default function FacultyAttendanceWrapper() {
 
   const { department, course_number, session_id } = useParams();
   const { sessions } = useContext(SessionsContext)
@@ -31,16 +31,16 @@ export default function StudentAttendanceWrapper() {
     return "Fetching Attendance Details"
   }
 
-  return <StudentAttendance session_attendance={session_attendance} />;
+  return <FacultyAttendance session_attendance={session_attendance} />;
 
 }
 
-function StudentAttendance({ session_attendance }) {
+function FacultyAttendance({ session_attendance }) {
 
   return (
     <Layout>
       <div className={styles.attendance_container}>
-        <Calender className={styles.attendance_calender} data={session_attendance?.attendance_data || []} DateComponent={CalenderItem} />
+        <Calender className={styles.attendance_calender} data={session_attendance?.attendance_data || []} DateComponent={PercentageCalenderItem} />
         <Summary session_attendance={session_attendance} />
       </div>
     </Layout>

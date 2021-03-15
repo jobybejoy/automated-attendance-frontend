@@ -18,6 +18,8 @@ import { TextArea } from "../../../components/Form/Input"
 
 import { UserContext } from "../../../context/UserContext"
 
+import updateUserProfile from "../../../api/user/updateProfile"
+
 export default function EditProfileWrapper() {
   // const { user, isError, isLoading } = useUser()
   const { user, isLoading, isError } = useContext(UserContext)
@@ -44,26 +46,28 @@ export default function EditProfileWrapper() {
 function EditProfile({ user }) {
 
   const history = useHistory();
-  const [name, setName] = useState(user?.name)
-  const [phoneNumber, setPhoneNumber] = useState(user?.phone_number);
+  const [firstName, setFirstName] = useState(user?.first_name)
+  const [lastName, setLastName] = useState(user?.last_name)
+  const [phoneNumber, setPhoneNumber] = useState(user?.phone_no);
   const [address, setAddress] = useState(user?.address);
 
   const handleSubmit = async e => {
     e.preventDefault();
 
     console.log({
-      name, phoneNumber, address
+      firstName, lastName, phoneNumber, address
     });
 
-    // setUser({ ...user, name, phoneNumber, address })
-    // const token = await loginUser({
-    //   email,
-    //   password
-    // });
+    updateUserProfile({
+      first_name: firstName, last_name: lastName, phone_no: phoneNumber, address
+    })
+      .then(() => {
+        history.push("/profile");
+      })
+
 
     // !In case err have to handle it.
 
-    history.push("/profile");
   }
 
   return (
@@ -79,16 +83,25 @@ function EditProfile({ user }) {
           <a href={"mailto:" + user.email} target="_blank" rel="noopener noreferrer">{user.email}</a>
         </h3>
         <h3 className={styles.profile_department}>
-          {user.department}
+          {user.dept_name}
         </h3>
 
         <form onSubmit={handleSubmit}>
           <InputGroup>
-            <Label htmlFor="name">Name</Label>
+            <Label htmlFor="name">First Name</Label>
             <Input type="text" name="name"
-              placeholder="John Doe"
-              onChange={e => setName(e.target.value)}
-              value={name}
+              placeholder="John"
+              onChange={e => setFirstName(e.target.value)}
+              value={firstName}
+              required
+            />
+          </InputGroup>
+          <InputGroup>
+            <Label htmlFor="name">Last Name</Label>
+            <Input type="text" name="name"
+              placeholder="Doe"
+              onChange={e => setLastName(e.target.value)}
+              value={lastName}
               required
             />
           </InputGroup>

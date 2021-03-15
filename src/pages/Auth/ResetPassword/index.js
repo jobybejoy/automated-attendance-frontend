@@ -12,7 +12,7 @@ import ButtonGroup from "../../../components/Button/ButtonGroup"
 import { CTA_Button, OutlineButton } from "../../../components/Button"
 import { API_BASE } from "../../../api/base"
 
-import useToken from "../../../containers/App/useToken"
+import useToken from "../../../api/auth/useToken"
 import { useHistory } from "react-router-dom";
 
 async function ResetPasswordUser(credentials) {

@@ -1,5 +1,5 @@
 .sessions_container{
-  max-width: 720px;
+  max-width: 860px;
   width: 100%;
 }
 
@@ -36,6 +36,11 @@ a .session_card:focus{
 .session_card div{
   display: flex;
   flex-direction: row;
+}
+
+.course_id{
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 .course_id,.session_id, .course_name,.term{

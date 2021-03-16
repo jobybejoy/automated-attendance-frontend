@@ -1,10 +1,14 @@
 import { UPDATE_PROFILE_URL } from "../urls"
 
-export default async function updateUserProfile(data) {
+
+
+
+export default async function UpdateUserProfile(data, token) {
   return await fetch(UPDATE_PROFILE_URL, {
     method: 'PUT',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': `token ${token}`,
     },
     body: JSON.stringify(data)
   })

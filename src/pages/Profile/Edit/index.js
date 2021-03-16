@@ -16,13 +16,16 @@ import { Button, CTA_Button } from '../../../components/Button/index'
 
 import { TextArea } from "../../../components/Form/Input"
 
-import { UserContext } from "../../../context/UserContext"
+// import { UserContext } from "../../../context/UserContext"
 
-import updateUserProfile from "../../../api/user/updateProfile"
+
+import UpdateUserProfile from "../../../api/user/updateProfile"
+import useToken from "../../../api/auth/useToken"
+import useUser from "../../../api/user/index"
 
 export default function EditProfileWrapper() {
-  // const { user, isError, isLoading } = useUser()
-  const { user, isLoading, isError } = useContext(UserContext)
+  const { user, isError, isLoading } = useUser()
+  // const { user, isLoading, isError } = useContext(UserContext)
 
   if (isLoading) {
     return "Loading ..."
@@ -45,6 +48,8 @@ export default function EditProfileWrapper() {
 
 function EditProfile({ user }) {
 
+  const { token } = useToken();
+
   const history = useHistory();
   const [firstName, setFirstName] = useState(user?.first_name)
   const [lastName, setLastName] = useState(user?.last_name)
@@ -58,9 +63,10 @@ function EditProfile({ user }) {
       firstName, lastName, phoneNumber, address
     });
 
-    updateUserProfile({
-      first_name: firstName, last_name: lastName, phone_no: phoneNumber, address
-    })
+    UpdateUserProfile(
+      { first_name: firstName, last_name: lastName, phone_no: phoneNumber, address },
+      token
+    )
       .then(() => {
         history.push("/profile");
       })

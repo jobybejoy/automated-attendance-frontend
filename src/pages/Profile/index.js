@@ -10,11 +10,11 @@ import { Link } from "react-router-dom"
 import face_emoji from "../../assets/images/icons/face.svg"
 import back_icon from "../../assets/images/icons/navigate_before.svg"
 
-import { UserContext } from "../../context/UserContext"
-
+import useUser from "../../api/user/index"
 
 export default function ProfileWrapper() {
-  const { user, isLoading, isError } = useContext(UserContext)
+
+  const { user, isError, isLoading } = useUser()
 
   if (isLoading) {
     return "Loading ..."

@@ -51,6 +51,10 @@ a .session_card:focus{
   font-variant-numeric: lining-nums tabular-nums;
 }
 
+.term{
+  text-transform: capitalize;
+}
+
 
 .course_name{
   /* flex-basis: 100%; */

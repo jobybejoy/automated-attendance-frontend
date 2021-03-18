@@ -12,6 +12,8 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+
+  text-transform: capitalize;
 }
 
 .session_header_container .course_name{

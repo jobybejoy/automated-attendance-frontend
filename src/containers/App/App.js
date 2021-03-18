@@ -13,6 +13,11 @@ import Profile from "../../pages/Profile"
 import EditProfile from "../../pages/Profile/Edit"
 import AttendancePage from "../../pages/Attendance/index"
 
+
+import Logout from "../../pages/Auth/Logout"
+
+
+// API
 import useToken from "../../api/auth/useToken";
 import useUser from "../../api/user"
 import useSessions from "../../api/sessions"
@@ -68,6 +73,8 @@ function App() {
 
               <Route path="/profile" exact component={() => <Profile />} />
               <Route path="/profile/edit" exact component={() => <EditProfile />} />
+
+              <Route path="/logout" exact component={() => <Logout />} />
 
             </ProviderWrapper>
           </RequireAuth>

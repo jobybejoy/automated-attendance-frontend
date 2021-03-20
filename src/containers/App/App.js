@@ -12,6 +12,7 @@ import Home from "../../pages/Home"
 import Profile from "../../pages/Profile"
 import EditProfile from "../../pages/Profile/Edit"
 import AttendancePage from "../../pages/Attendance/index"
+import MarkAttendancePage from "../../pages/MarkAttendance"
 
 
 import Logout from "../../pages/Auth/Logout"
@@ -69,7 +70,8 @@ function App() {
             <ProviderWrapper token={token}>
 
               <Route path="/" exact component={() => <Home />} />
-              <Route path="/:department/:course_number/session/:session_id" component={() => <AttendancePage />} />
+              <Route path="/:department/:course_number/session/:session_id" exact component={() => <AttendancePage />} />
+              <Route path="/:department/:course_number/session/:session_id/attendance/on/:year/:month/:day" exact component={() => <MarkAttendancePage />} />
 
               <Route path="/profile" exact component={() => <Profile />} />
               <Route path="/profile/edit" exact component={() => <EditProfile />} />

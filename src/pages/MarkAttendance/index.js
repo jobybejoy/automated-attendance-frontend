@@ -1,19 +1,54 @@
 import styles from "./Marker.module.css"
 import Layout from "../../containers/Layout"
 
+import { useContext } from "react"
+import { useParams } from 'react-router-dom';
 import { useState } from "react"
 
 import img from "../../assets/images/icons/face.svg"
 
-import { useContext } from "react";
-import { UserContext } from "../../context/UserContext"
+import { SessionsContext } from "../../context/SessionsContext"
+
+import useAllStudentAttendance from "../../api/attendance/Faculty/SessionAttendance"
+import UpdateSessionAttendance from "../../api/attendance/Faculty/UpdateSessionAttendance"
+
+import useToken from "../../api/auth/useToken"
+
+import StudentsGrid from "./StudentsGrid"
+import { findSession } from "../Attendance/helpers"
 
 // import StudentAttendance from "./Student/index"
 // import FacultyMarksAttendance from "./Faculty/index"
 
+
+
 export default function MarkAttendanceContainer(params) {
-  const { user } = useContext(UserContext)
-  return <MarkAttendance />
+
+  const { department, course_number, session_id, year, month, day } = useParams();
+  const { sessions } = useContext(SessionsContext)
+
+  const { token } = useToken()
+
+  const session = findSession(sessions, department, course_number, session_id);
+
+  const date = `${year}-${month}-${day}`;
+
+  const { student_attendance, isError, isLoading } = useAllStudentAttendance(session?.course_id, session?.session_id, date);
+
+  if (isLoading) {
+    return "Fetching Attendance Details"
+  }
+
+  if (isError) {
+    return "Failed to fetch Attendance Details"
+  }
+
+  // console.log({ token, session, date });
+
+  return <MarkAttendance
+    attendance={student_attendance}
+    onItemClick={(student_id) => UpdateSessionAttendance(token, session?.course_id, session?.session_id, date, student_id)}
+  />
   // if (user?.isStaff) {
   //   return <FacultyAttendance />
   // } else {
@@ -22,56 +57,27 @@ export default function MarkAttendanceContainer(params) {
 
 };
 
-function MarkAttendance({ props }) {
+
+function MarkAttendance({ attendance, onItemClick }) {
 
   function handleClick(e, { id, name, type }, index) {
     // alert(e.target.name)
     e.preventDefault();
-    console.log(index, { id, name, type })
-    const new_students_array = [...students]
-    const next_attendance_type = (type === "attended") ? "absent" : "attended"
-    new_students_array[index] = { id, name, type: next_attendance_type }
-    setStudents(new_students_array)
+
+    onItemClick(id)
+      .then(function () {
+        console.log(`Updated attendance of student_id = ${id}`)
+        const new_students_array = [...students]
+        const next_attendance_type = (type === "attended") ? "absent" : "attended"
+        new_students_array[index] = { id, name, type: next_attendance_type }
+        setStudents(new_students_array)
+      })
+      .catch((err) => {
+        alert(err, " due to ", err.info)
+      })
   }
 
-  const getTypeCount = (students, attendance_type) => {
-    return students.reduce((acc, student, index) => {
-      if (student.type === attendance_type) { return acc += 1 }
-      else { return acc; }
-    }, 0)
-  }
-
-  const students_data = [
-    { "id": 1, "name": "JohnJohn Doe", "type": "attended" },
-    { "id": 6, "name": "Adhithya  Meenakshisundaram", "type": "attended" },
-    { "id": 8, "name": "Akshaya  Sarath", "type": "attended" },
-    { "id": 10, "name": "Lohavaani Sundar", "type": "attended" },
-    { "id": 12, "name": "Purnima Manoharan", "type": "attended" },
-    { "id": 14, "name": "Harish Vijayakumar", "type": "attended" },
-    { "id": 16, "name": "Rahul  Bommaraju", "type": "attended" },
-    { "id": 18, "name": "Rani Vishwa", "type": "attended" },
-    { "id": 20, "name": "Karthik Vishwa", "type": "attended" },
-    { "id": 22, "name": "Nithya  Arunkumar", "type": "attended" },
-    { "id": 24, "name": "Samhitha Arunkumar", "type": "attended" },
-    { "id": 26, "name": "Meenakshi Sundharam", "type": "attended" },
-    { "id": 28, "name": "Vardhini Manivannan", "type": "attended" },
-    { "id": 30, "name": "Murugavel Kumar", "type": "attended" },
-    { "id": 32, "name": "kishore  Murugavel", "type": "attended" },
-    { "id": 34, "name": "Baskar Nadarajan", "type": "attended" },
-    { "id": 36, "name": "Suvinesh Bhaskar", "type": "attended" },
-    { "id": 38, "name": "Baskar Ravi", "type": "attended" },
-    { "id": 40, "name": "Aashikha Ravi", "type": "attended" },
-    { "id": 42, "name": "Ensha  Neron", "type": "attended" },
-    { "id": 44, "name": "Acansha Christini", "type": "attended" },
-    { "id": 46, "name": "Isai Pari", "type": "attended" },
-    { "id": 48, "name": "Girijesh Vendhan", "type": "absent" },
-    { "id": 50, "name": "Roshan Rajsekar", "type": "absent" },
-    { "id": 52, "name": "Sahana Ramalingam", "type": "absent" },
-    { "id": 54, "name": "Santhosh Kumar", "type": "absent" }
-
-  ];
-
-  const [students, setStudents] = useState(students_data)
+  const [students, setStudents] = useState(attendance)
   const students_count = students.length
   const attended_count = getTypeCount(students, "attended")
   const absent_count = students_count - attended_count
@@ -95,18 +101,14 @@ function MarkAttendance({ props }) {
           </div>
         </div>
       </div>
-      <div className={styles.marker_container}>
-        {
-          students.map((student, index) => {
-            return (
-              <div className={styles.grid_item + " " + styles[student?.type]} key={student.id} onClick={(e) => handleClick(e, student, index)}>
-                <img src={`https://i.pravatar.cc/300?img=${index}`} alt="" />
-                <h6>{student?.name}</h6>
-              </div>
-            )
-          })
-        }
-      </div>
+      <StudentsGrid students={students} onClickHandler={handleClick} />
     </Layout>
   )
+}
+
+const getTypeCount = (students, attendance_type) => {
+  return students.reduce((acc, student, index) => {
+    if (student.type === attendance_type) { return acc += 1 }
+    else { return acc; }
+  }, 0)
 }

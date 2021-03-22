@@ -7,6 +7,9 @@
   grid-template-columns: repeat(7,1fr);
   /* grid-template-rows: repeat(6,80px); */
   grid-gap: 0.5rem;
+
+  --green:var(--attendance-status-attended-color);  
+  --red:var(--attendance-status-absent-color);
 }
 
 .calender_header_container{
@@ -35,6 +38,12 @@
 
 .calender_days_of_week{
   margin-bottom: 0.5rem;
+}
+
+.calender_item:focus,.calender_item_percentage:focus{
+  outline-width: 2px;
+  outline-color: red;
+  outline-offset: 4px;
 }
 
 .calender_item,.calender_item_filler{
@@ -69,11 +78,11 @@
 }
 
 .calender_item.attended{
-  background-color: #8CF296;
+  background-color: var(--green);
 }
 
 .calender_item.absent{
-  background-color: #FA6D6D;
+  background-color: var(--red);
 }
 
 .calender_item.today{
@@ -137,7 +146,6 @@
   text-align: right;
   padding-right: 0.4rem;
 }
-
 
 .right_centered{
   text-align: right;

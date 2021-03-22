@@ -34,7 +34,7 @@ export default function Calender({ today = new Date(), className, data, DateComp
     const location = useLocation();
     console.log({ location });
 
-    const days = markAttendedDays(all_days, data, current_month, current_year);
+    const days = markAttendedDays(location.pathname, all_days, data, current_month, current_year);
 
     return (
       <div className={className}>

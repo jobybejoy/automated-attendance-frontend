@@ -10,22 +10,42 @@ export const getDaysinMonth = (count) => {
 }
 
 
-export const markAttendedDays = (cal_days, marked_days, current_month, current_year) => {
+export const markAttendedDays = (base_url, cal_days, marked_days, current_month, current_year) => {
 
   marked_days.map((marked_day, indx) => {
     // console.log(marked_day);
     // console.log("in marked");
     const marked_date = new Date(marked_day.date)
-    const is_date_in_current_month = marked_date.getMonth() == current_month;
-    const is_date_in_current_year = marked_date.getFullYear() == current_year;
+
+    const m_date_number = marked_date.getDate()
+    const m_date_month = marked_date.getMonth()
+    const m_date_year = marked_date.getFullYear()
+
+    const is_date_in_current_month = m_date_month === current_month;
+    const is_date_in_current_year = m_date_year === current_year;
 
     if (is_date_in_current_month && is_date_in_current_year) {
-      const date = marked_date.getDate() - 1;
+      const date = m_date_number - 1;
       // console.log({ date });
       // const att = marked_days.attended == true ? "attended" : "attended"
       const prevState = cal_days[date]
       // console.log({ prevState });
-      cal_days[date] = { ...prevState, type: marked_day.type, percentage: `${marked_day.percentage}%` }
+      if (marked_day.percentage) {
+        cal_days[date] = {
+          ...prevState,
+          type: marked_day.type,
+          percentage: `${marked_day.percentage}%`,
+          link_to: `${base_url}/attendance/on/${m_date_year}/${m_date_month + 1}/${m_date_number}`
+        }
+      } else {
+        cal_days[date] = {
+          ...prevState,
+          type: marked_day.type,
+        }
+      }
+      return true
+    } else {
+      return false
     }
   })
   return cal_days

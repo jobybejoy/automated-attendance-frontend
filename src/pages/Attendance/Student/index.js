@@ -10,13 +10,9 @@ import { CalenderItem } from "../../../components/Calender/DateElement"
 
 import { SessionsContext } from "../../../context/SessionsContext"
 
-import useAttendance from "../../../api/attendance"
+import useStudentAttendance from "../../../api/attendance/student.js"
 
-const findSession = (sessions, department, course_number, session_id) => {
-  if (sessions) {
-    return sessions.find(x => (x.session_name === session_id))
-  }
-}
+import { findSession } from "../helpers.js"
 
 export default function StudentAttendanceWrapper() {
 
@@ -25,7 +21,7 @@ export default function StudentAttendanceWrapper() {
 
   const session = findSession(sessions, department, course_number, session_id);
 
-  const { session_attendance, isError, isLoading } = useAttendance(session?.course_id, session?.session_id);
+  const { session_attendance, isError, isLoading } = useStudentAttendance(session?.course_id, session?.session_id);
 
   if (isLoading) {
     return "Fetching Attendance Details"
@@ -36,6 +32,8 @@ export default function StudentAttendanceWrapper() {
 }
 
 function StudentAttendance({ session_attendance }) {
+
+  console.log({ session_attendance })
 
   return (
     <Layout>

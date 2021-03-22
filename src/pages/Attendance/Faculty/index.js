@@ -10,13 +10,10 @@ import { PercentageCalenderItem } from "../../../components/Calender/DateElement
 
 import { SessionsContext } from "../../../context/SessionsContext"
 
-import useAttendance from "../../../api/attendance"
+import useSessionAttendance from "../../../api/attendance/faculty"
 
-const findSession = (sessions, department, course_number, session_id) => {
-  if (sessions) {
-    return sessions.find(x => (x.session_name === session_id))
-  }
-}
+import { findSession } from "../helpers.js"
+
 
 export default function FacultyAttendanceWrapper() {
 
@@ -25,13 +22,27 @@ export default function FacultyAttendanceWrapper() {
 
   const session = findSession(sessions, department, course_number, session_id);
 
-  const { session_attendance, isError, isLoading } = useAttendance(session?.course_id, session?.session_id);
+  console.log({ session });
+
+  const { session_attendance, isError, isLoading } = useSessionAttendance(session?.course_id, session?.session_id);
 
   if (isLoading) {
     return "Fetching Attendance Details"
   }
 
-  return <FacultyAttendance session_attendance={session_attendance} />;
+  const getAveragePercentage = (data) => {
+    const sum = data.reduce((acc, el) => acc + Number(el.percentage), 0)
+    const avg = Math.round(sum / data.length)
+    return `${avg}%`
+  }
+
+  console.log(session_attendance);
+  const data = {
+    "attendance_data": session_attendance,
+    "percentage": getAveragePercentage(session_attendance)
+  }
+
+  return <FacultyAttendance session_attendance={data} />;
 
 }
 

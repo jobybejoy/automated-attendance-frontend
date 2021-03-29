@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react"
 import styles from "./Images.module.css"
-
+import { CTA_Button } from "../../../components/Button"
 
 
 export default function CaptureImage({ onCaptureHandler }) {
@@ -61,7 +61,7 @@ export default function CaptureImage({ onCaptureHandler }) {
       <div>
         <video ref={videoRef} />
         {/* <img className={styles.image} src={imageURL} ref={imageRef} /> */}
-        <button className={styles.capture_image_cta} onClick={takePhoto}>Snap Picture</button>
+        <CTA_Button value="Snap Picture" onClick={takePhoto} />
         <canvas ref={canvasRef} style={{ display: 'none' }}>
         </canvas>
       </div>

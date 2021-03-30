@@ -17,3 +17,8 @@ export const UPDATE_SESSION_ATTENDANCE_ON_DATE_URL = (course_id, session_id, dat
   const formated_date = new Date(date).toLocaleDateString('fr-CA')
   return `${API_BASE}/api/attendance/faculty/course/${course_id}/session/${session_id}/date/${formated_date}/`
 }
+
+export const POST_SESSION_ATTENDANCE_ON_DATE_URL = (course_id, session_id, date) => {
+  const formated_date = new Date(date).toLocaleDateString('fr-CA')
+  return `${API_BASE}/api/attendance/faculty/course/${course_id}/session/${session_id}/date/${formated_date}/`
+}

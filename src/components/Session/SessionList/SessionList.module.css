@@ -53,6 +53,8 @@ a .session_card:focus{
 
 .term{
   text-transform: capitalize;
+  width: 15ch;
+  justify-content: flex-end;
 }
 
 

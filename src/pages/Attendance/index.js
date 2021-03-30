@@ -6,7 +6,7 @@ import FacultyAttendance from "./Faculty/index"
 
 export default function Attendance(params) {
   const { user } = useContext(UserContext)
-  if (user?.isStaff) {
+  if (user?.is_staff) {
     return <FacultyAttendance />
   } else {
     return <StudentAttendance />

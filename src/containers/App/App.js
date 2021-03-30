@@ -14,6 +14,8 @@ import EditProfile from "../../pages/Profile/Edit"
 import AttendancePage from "../../pages/Attendance/index"
 import MarkAttendancePage from "../../pages/MarkAttendance"
 
+import ImageHome from "../../pages/Profile/Image"
+
 
 import Logout from "../../pages/Auth/Logout"
 
@@ -75,6 +77,8 @@ function App() {
 
               <Route path="/profile" exact component={() => <Profile />} />
               <Route path="/profile/edit" exact component={() => <EditProfile />} />
+
+              <Route path="/profile/manage/images" exact component={() => <ImageHome />} />
 
               <Route path="/logout" exact component={() => <Logout />} />
 

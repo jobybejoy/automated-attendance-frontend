@@ -7,7 +7,7 @@ import Label, { Helper } from "../../../components/Form/Label"
 import Input from "../../../components/Form/Input"
 import { InputGroup } from "../../../components/Form/Containers"
 import ButtonGroup from "../../../components/Button/ButtonGroup"
-import { CTA_Button, OutlineButton } from "../../../components/Button"
+import { CallToActionButton, OutlineButton } from "../../../components/Button"
 
 import useToken from "../../../api/auth/useToken"
 
@@ -78,7 +78,7 @@ export default function Login({ setToken }) {
           </InputGroup>
 
           <ButtonGroup>
-            <CTA_Button type="submit" value="Login" disabled={disabled} />
+            <CallToActionButton type="submit" value="Login" disabled={disabled} />
             <Link to="/auth/password/forgot">
               <OutlineButton value="Forgot Passwords ?" />
             </Link>

@@ -8,7 +8,7 @@ import Input from "../../../components/Form/Input"
 import { InputGroup } from "../../../components/Form/Containers"
 
 import ButtonGroup from "../../../components/Button/ButtonGroup"
-import { CTA_Button, OutlineButton } from "../../../components/Button"
+import { CallToActionButton, OutlineButton } from "../../../components/Button"
 
 import useToken from "../../../api/auth/useToken"
 import { useHistory } from "react-router-dom";
@@ -62,7 +62,7 @@ export default function ForgotPassword() {
           </InputGroup>
 
           <ButtonGroup>
-            <CTA_Button type="submit" value="Reset" />
+            <CallToActionButton type="submit" value="Reset" />
             <Link to="/auth/login">
               <OutlineButton value="Go to Login" />
             </Link>

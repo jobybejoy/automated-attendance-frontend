@@ -12,7 +12,7 @@ import Label, { Helper } from "../../../components/Form/Label"
 import { InputGroup } from "../../../components/Form/Containers"
 
 import ButtonGroup from "../../../components/Button/ButtonGroup"
-import { Button, CTA_Button } from '../../../components/Button/index'
+import { Button, CallToActionButton } from '../../../components/Button/index'
 
 import { TextArea } from "../../../components/Form/Input"
 
@@ -136,7 +136,7 @@ function EditProfile({ user }) {
           </InputGroup>
 
           <ButtonGroup>
-            <CTA_Button type="submit" value="Update" />
+            <CallToActionButton type="submit" value="Update" />
           </ButtonGroup>
 
         </form>

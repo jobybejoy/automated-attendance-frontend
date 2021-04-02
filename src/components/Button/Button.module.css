@@ -32,8 +32,10 @@ button.cta_button:hover{
   color: var(--cta-font-color);
 }
 
+button.outline_button:disabled,
 button.cta_button:disabled{
   opacity: 0.7;
+  cursor: not-allowed;
 }
 
 .outline_button{

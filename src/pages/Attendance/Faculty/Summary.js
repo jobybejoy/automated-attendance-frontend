@@ -1,5 +1,5 @@
 import styles from "../Student/StudentAttendance.module.css"
-import { CTA_Button } from "../../../components/Button"
+import { CallToActionButton } from "../../../components/Button"
 
 const NumberInMinTwoDigits = (number) => {
   if (!number) return "--"
@@ -14,7 +14,7 @@ function Sessions({ session_attendance, start_session_handler }) {
         <h2 className={styles.summary_title_very_large}>{session_attendance?.percentage || "--%"}</h2>
         <div className={styles.summary_subheading}>Avg. Attendance</div>
       </div>
-      <CTA_Button className={styles.cta_start_session} value="Start Session" onClick={start_session_handler} />
+      <CallToActionButton className={styles.cta_start_session} value="Start Session" onClick={start_session_handler} />
       {/* <div className={styles.summary_card}>
         <h2 className={styles.summary_title_large}>{NumberInMinTwoDigits(session_attendance?.attended) || "-- "} / {NumberInMinTwoDigits(session_attendance?.all_sessions) || "--"}</h2>
         <div className={styles.summary_subheading}>

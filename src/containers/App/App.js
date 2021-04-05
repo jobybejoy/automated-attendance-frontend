@@ -28,6 +28,8 @@ import useSessions from "../../api/sessions"
 import { UserContext } from "../../context/UserContext"
 import { SessionsContext } from "../../context/SessionsContext"
 
+import { SkeletonTheme } from "react-loading-skeleton";
+
 
 // Authenticated Routes HOC
 const RequireAuth = ({ children, token }) => {
@@ -44,7 +46,9 @@ const ProviderWrapper = ({ children, token }) => {
   return (
     <UserContext.Provider value={{ user, isError, isLoading }}>
       <SessionsContext.Provider value={{ sessions, isError: isSessionsError, isLoading: isSessionsLoading }}>
-        {children}
+        <SkeletonTheme color="var(--bg-secondary-color)" highlightColor="var(--bg-primary-color)">
+          {children}
+        </SkeletonTheme>
       </SessionsContext.Provider>
     </UserContext.Provider>
   )

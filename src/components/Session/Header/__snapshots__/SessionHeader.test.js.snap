@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Session Header renders to document w/ props 1`] = `
+<div
+  class="session_header_container"
+  data-testid="SessionHeader"
+>
+  <div
+    class="session_meta_details"
+  >
+    <span>
+      <b>
+        CS 675
+      </b>
+       
+    </span>
+    <span>
+      001
+    </span>
+    <span>
+      Fall 2021
+    </span>
+  </div>
+  <h1
+    class="course_name"
+  >
+    Software Architecture
+  </h1>
+</div>
+`;

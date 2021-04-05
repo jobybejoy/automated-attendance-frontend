@@ -24,7 +24,12 @@ export default function StudentAttendanceWrapper() {
   const { session_attendance, isError, isLoading } = useStudentAttendance(session?.course_id, session?.session_id);
 
   if (isLoading) {
-    return "Fetching Attendance Details"
+    return (
+      <Layout >
+        <Calender className={styles.attendance_calender} data={[]} DateComponent={CalenderItem} />
+        {/* <Summary /> */}
+      </Layout>
+    )
   }
 
   return <StudentAttendance session_attendance={session_attendance} />;

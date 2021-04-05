@@ -39,7 +39,14 @@ export default function FacultyAttendanceWrapper() {
   const { session_attendance, isError, isLoading } = useSessionAttendance(session?.course_id, session?.session_id);
 
   if (isLoading) {
-    return "Fetching Attendance Details"
+    return (
+      <Layout >
+        <div className={styles.attendance_container}>
+          <Calender className={styles.attendance_calender} data={[]} DateComponent={PercentageCalenderItem} />
+          {/* <Summary /> */}
+        </div>
+      </Layout>
+    )
   }
 
   const getAveragePercentage = (data) => {

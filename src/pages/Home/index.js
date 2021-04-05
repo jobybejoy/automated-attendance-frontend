@@ -8,7 +8,15 @@ export default function HomeWrapper(params) {
   const { sessions, isError, isLoading } = useContext(SessionsContext)
 
   if (isError) { return "Error - " + isError }
-  if (isLoading) { return "Loading" }
+  if (isLoading) {
+    return (
+      <Layout>
+        <h5>Sessions</h5>
+        <SessionsList sessions={sessions} loading={true} />
+
+      </Layout>
+    )
+  }
 
   return <Home sessions={sessions} />
 }

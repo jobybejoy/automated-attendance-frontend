@@ -48,6 +48,9 @@ describe('Default Button', () => {
     const callback = jest.fn()
     const { getByTestId } = render(<Button value="Disabled Button" disabled={true} onClick={callback} />);
     expect(getByTestId('Button')).toBeDisabled()
+
+    fireEvent.click(getByTestId('Button'), { button: 0 })
+    expect(callback).not.toBeCalled()
   })
 
 });
@@ -96,6 +99,9 @@ describe('Outline Button', () => {
     const callback = jest.fn()
     const { getByTestId } = render(<OutlineButton value="Disabled Button" disabled={true} onClick={callback} />);
     expect(getByTestId('OutlineButton')).toBeDisabled()
+
+    fireEvent.click(getByTestId('OutlineButton'), { button: 0 })
+    expect(callback).not.toBeCalled()
   })
 
 });
@@ -144,6 +150,9 @@ describe('CTA Button', () => {
     const callback = jest.fn()
     const { getByTestId } = render(<CallToActionButton value="Disabled Button" disabled={true} onClick={callback} />);
     expect(getByTestId('CTAButton')).toBeDisabled()
+
+    fireEvent.click(getByTestId('CTAButton'), { button: 0 })
+    expect(callback).not.toBeCalled()
   })
 
 });

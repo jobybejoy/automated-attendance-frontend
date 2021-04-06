@@ -11,7 +11,9 @@ import { SessionsContext } from "../../../context/SessionsContext"
 
 import Skeleton from 'react-loading-skeleton';
 
-const Header = ({ department, course_number, session_id, sessions, user }) => {
+import { findSession } from "../../../pages/Attendance/helpers"
+
+export const Header = ({ department, course_number, session_id, sessions, user }) => {
 
   if (department && course_number && session_id) {
     const session = getSession({ sessions, department, course_number, session_id })
@@ -22,11 +24,11 @@ const Header = ({ department, course_number, session_id, sessions, user }) => {
 
 }
 
-const getSession = ({ sessions, department, course_number, session_id }) => {
+export const getSession = ({ sessions, department, course_number, session_id }) => {
   // ! currently finding session only with sessionID
   // * Verfy the structure of session object
 
-  console.log({ sessions, session_id, course_number })
+  // console.log({ sessions, session_id, course_number })
 
   if (!sessions) return
 
@@ -35,13 +37,25 @@ const getSession = ({ sessions, department, course_number, session_id }) => {
   // }
 }
 
-function Navbar() {
-
+function NavbarContainer() {
   const { user } = useContext(UserContext)
   const { sessions, isError, isLoading } = useContext(SessionsContext)
 
-  // Gets the department,course_id and  params from url
   const { department, course_number, session_id } = useParams();
+
+  // if (isLoading) {
+  //   return "Loading"
+  // }
+
+  return <Navbar user={user} sessions={sessions} department={department} course_number={course_number} session_id={session_id} />
+
+}
+
+export function Navbar({ user, sessions, department, course_number, session_id }) {
+
+
+  // Gets the department,course_id and  params from url
+
 
   // const sessions = [
   //   { course_id: "CS 123", session_id: "111", course_name: "Data Structures and Algorithms", term: "Fall 2020", url: "/cs/123/session/111" },
@@ -49,9 +63,6 @@ function Navbar() {
   // { course_id: "CS 123", session_id: "101", course_name: "Data Structures and Algorithms", term: "Fall 2020", url: "/cs/123/session/101" }
   // ]
 
-  // if (isLoading) {
-  //   return "Loading"
-  // }
 
   return (
     <nav className={styles.nav_container}>
@@ -60,7 +71,10 @@ function Navbar() {
 
       <Link to="/profile">
         <div className={styles.user_profile_container}>
-          <img src={user?.image || face_emoji} alt="An awsome portait of the user" />
+          <img src={user?.image || face_emoji}
+            alt="An awsome portait of the user"
+            aria-label="Profile Image"
+          />
         </div>
       </Link>
 
@@ -68,4 +82,4 @@ function Navbar() {
   )
 };
 
-export default Navbar;
+export default NavbarContainer;

@@ -4,12 +4,12 @@ import Skeleton from 'react-loading-skeleton';
 
 export default function SessionList({ sessions, loading }) {
 
-  if (loading) {
+  if (loading || !sessions) {
     return (
       <section className={styles.sessions_container}>
-        <Skeleton style={{ width: "100%", borderRadius: "0.5rem", marginBottom: "0.6rem" }} height={60} />
-        <Skeleton style={{ width: "100%", borderRadius: "0.5rem", marginBottom: "0.6rem" }} height={60} />
-        <Skeleton style={{ width: "100%", borderRadius: "0.5rem", marginBottom: "0.6rem" }} height={60} />
+        <SessionItem />
+        <SessionItem />
+        <SessionItem />
       </section>
     )
   }
@@ -21,11 +21,12 @@ export default function SessionList({ sessions, loading }) {
       </div>
     )
   }
+
   return (
     <section className={styles.sessions_container}>
       {
         sessions.map((session, index) => {
-          return (<SessionItem session={session} key={session?.course_id + session?.session_id + session.term + index} />)
+          return (<SessionItem session={session} key={index} />)
         })
       }
     </section>

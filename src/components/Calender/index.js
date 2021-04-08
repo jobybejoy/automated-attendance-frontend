@@ -26,7 +26,7 @@ export default function Calender({ today = new Date(), className, data, DateComp
 
     const daysOfWeek = ["Mon", "Tue", "Wed", "Thr", "Fri", "Sat", "Sun"]
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-    const { current_year, current_month, current_date, count_days_in_month, doW, first_DoW } = getCurrentDateDetails(today)
+    const { current_year, current_month, current_date, count_days_in_month, first_DoW } = getCurrentDateDetails(today)
 
     // console.log(numberOfDaysInMonth(2021, 3));
     const all_days = getDaysinMonth(count_days_in_month);

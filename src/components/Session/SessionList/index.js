@@ -1,6 +1,5 @@
 import styles from "./SessionList.module.css"
 import SessionItem from "./SessionItem"
-import Skeleton from 'react-loading-skeleton';
 
 export default function SessionList({ sessions, loading }) {
 

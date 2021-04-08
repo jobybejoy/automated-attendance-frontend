@@ -43,7 +43,7 @@ export const RenderDaysintoCalender = ({ days, current_year, current_month, curr
   const today_date = today.getDate();
   return (
     days.map((day, index) => {
-      if (day.date == today_date && current_month == today_month && current_year == today_year) {
+      if (day.date === today_date && current_month === today_month && current_year === today_year) {
         return <DateComponent day={day} className={styles.today} />
       } else {
         return (<DateComponent day={day} />)

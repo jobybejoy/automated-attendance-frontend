@@ -12,7 +12,7 @@ import { SessionsContext } from "../../../context/SessionsContext"
 
 import useSessionAttendance from "../../../api/attendance/faculty"
 
-import { findSession } from "../helpers.js"
+import { findSession } from "../../../helpers/findSession.js"
 
 import StartSession from "../../../api/attendance/Faculty/StartSession"
 
@@ -32,7 +32,7 @@ export default function FacultyAttendanceWrapper() {
   const history = useHistory();
   const { pathname } = useLocation()
 
-  const session = findSession(sessions, department, course_number, session_id);
+  const session = findSession({ sessions, department, course_number, session_id });
 
   // console.log({ session });
 

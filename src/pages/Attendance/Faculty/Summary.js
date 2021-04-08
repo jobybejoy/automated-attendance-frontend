@@ -12,7 +12,7 @@ function Sessions({ session_attendance, start_session_handler }) {
     <div className={styles.summary_container}>
       <div className={styles.summary_section_title}>Summary</div>
       <div className={styles.summary_card}>
-        <h2 className={styles.summary_title_very_large}>{session_attendance?.percentage || <Skeleton style={{ height: "5rem", width: 286 }} />}</h2>
+        <h2 className={styles.summary_title_very_large}>{NumberInMinTwoDigits(session_attendance?.percentage) || <Skeleton style={{ height: "5rem", width: 286 }} />}</h2>
         <div className={styles.summary_subheading}>Avg. Attendance</div>
       </div>
       <CallToActionButton className={styles.cta_start_session} value="Start Session" onClick={start_session_handler} />

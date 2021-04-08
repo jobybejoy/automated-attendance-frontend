@@ -11,12 +11,12 @@ import { SessionsContext } from "../../../context/SessionsContext"
 
 import Skeleton from 'react-loading-skeleton';
 
-import { findSession } from "../../../pages/Attendance/helpers"
+import { findSession } from "../../../helpers/findSession"
 
 export const Header = ({ department, course_number, session_id, sessions, user }) => {
 
   if (department && course_number && session_id) {
-    const session = getSession({ sessions, department, course_number, session_id })
+    const session = findSession({ sessions, department, course_number, session_id })
     return <SessionHeader session={session} />
   } else {
     return <h1 className={styles.large_title}>Hello, {user ? (user?.first_name + " " + user?.last_name) : <Skeleton width={300} height={45} />}</h1>
@@ -39,7 +39,7 @@ export const getSession = ({ sessions, department, course_number, session_id }) 
 
 function NavbarContainer() {
   const { user } = useContext(UserContext)
-  const { sessions, isError, isLoading } = useContext(SessionsContext)
+  const { sessions } = useContext(SessionsContext)
 
   const { department, course_number, session_id } = useParams();
 

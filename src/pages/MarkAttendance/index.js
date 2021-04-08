@@ -15,7 +15,7 @@ import UpdateSessionAttendance from "../../api/attendance/Faculty/UpdateSessionA
 import useToken from "../../api/auth/useToken"
 
 import StudentsGrid from "./StudentsGrid"
-import { findSession } from "../Attendance/helpers"
+import { findSession } from "../../helpers/findSession"
 
 // import StudentAttendance from "./Student/index"
 // import FacultyMarksAttendance from "./Faculty/index"
@@ -29,7 +29,7 @@ export default function MarkAttendanceContainer(params) {
 
   const { token } = useToken()
 
-  const session = findSession(sessions, department, course_number, session_id);
+  const session = findSession({ sessions, department, course_number, session_id });
 
   const date = `${year}-${month}-${day}`;
 

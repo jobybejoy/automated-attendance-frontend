@@ -12,14 +12,14 @@ import { SessionsContext } from "../../../context/SessionsContext"
 
 import useStudentAttendance from "../../../api/attendance/student.js"
 
-import { findSession } from "../helpers.js"
+import { findSession } from "../../../helpers/findSession.js"
 
 export default function StudentAttendanceWrapper() {
 
   const { department, course_number, session_id } = useParams();
   const { sessions } = useContext(SessionsContext)
 
-  const session = findSession(sessions, department, course_number, session_id);
+  const session = findSession({ sessions, department, course_number, session_id });
 
   const { session_attendance, isError, isLoading } = useStudentAttendance(session?.course_id, session?.session_id);
 

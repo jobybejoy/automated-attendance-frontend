@@ -1,0 +1,33 @@
+.ErrorContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+
+  min-height: 60vh;
+
+  padding: 0 4rem;
+}
+
+.error_status,.error_heading,.error_message,.error_message_stack{
+  margin: 0.5rem 0;
+}
+
+.error_heading{
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-top: 1rem;
+}
+
+.error_status{
+  font-size: 3rem;
+  margin: 1rem 0;
+}
+
+.error_message_stack{
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  background-color: var(--bg-secondary-color);
+  border-radius: 4px;
+}

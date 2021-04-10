@@ -32,7 +32,7 @@ export default function Calender({ today = new Date(), className, data, DateComp
     const all_days = getDaysinMonth(count_days_in_month);
 
     const location = useLocation();
-    console.log({ location });
+    // console.log({ location });
 
     const days = markAttendedDays(location.pathname, all_days, data, current_month, current_year);
 

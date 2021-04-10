@@ -12,6 +12,8 @@ import back_icon from "../../assets/images/icons/navigate_before.svg"
 
 import useUser from "../../api/user/index"
 
+import ErrorPage from "../../pages/_Error"
+
 export default function ProfileWrapper() {
 
   const { user, isError, isLoading } = useUser()
@@ -21,15 +23,7 @@ export default function ProfileWrapper() {
   }
 
   if (isError) {
-    return (
-      <Layout>
-        <div className={styles.profile_container}>
-          <h2 className={styles.profile_name}>
-            User Not Found
-        </h2>
-        </div>
-      </Layout>
-    )
+    return (<ErrorPage error={isError} />)
   }
 
   return <Profile user={user} />

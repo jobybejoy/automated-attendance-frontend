@@ -1,5 +1,5 @@
 import styles from './Input.module.css'
-
+import PropTypes from 'prop-types'
 
 /**
  *          
@@ -14,7 +14,12 @@ import styles from './Input.module.css'
 
 function Input({ className, ...props }) {
   return (
-    <input {...props}
+    <input
+      data-testid="FormInput"
+      type={props.type || "text"}
+      name={props.name || "default_input"}
+      placeholder={props.placeholder || "Fill this input"}
+      {...props}
       className={styles.input + " " + styles[className]}
     />
   )
@@ -22,8 +27,27 @@ function Input({ className, ...props }) {
 
 export function TextArea({ className, value, ...props }) {
   return (
-    <textarea className={styles.input + " " + styles[className]} value={value} {...props}></textarea>
+    <textarea data-testid="TextArea"
+      className={styles.input + " " + styles[className]} value={value} {...props}></textarea>
   )
 }
 
-export default Input 
+Input.propTypes = {
+  name: PropTypes.string,
+  type: PropTypes.string,
+  placeholder: PropTypes.string,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+  disabled: PropTypes.bool,
+};
+
+TextArea.propTypes = {
+  name: PropTypes.string,
+  type: PropTypes.string,
+  placeholder: PropTypes.string,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+  disabled: PropTypes.bool,
+};
+
+export default Input

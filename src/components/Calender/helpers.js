@@ -10,6 +10,8 @@ export const getDaysinMonth = (count) => {
 }
 
 
+// Marks the attended days in calender 
+// Mutates the cal_days array to change its state and data
 export const markAttendedDays = (base_url, cal_days, marked_days, current_month, current_year) => {
 
   marked_days.map((marked_day, indx) => {
@@ -54,12 +56,12 @@ export const markAttendedDays = (base_url, cal_days, marked_days, current_month,
 
 
 // Get the number of days in the month, year
-const numberOfDaysInMonth = (year, month) => new Date(year, month, 0).getDate();
+export const numberOfDaysInMonth = (year, month) => new Date(year, month, 0).getDate();
 
 // Function Returns indexs for the first WeekDay ['Mon','Wed',..etc] of the Month
 // ie. The month start with say "Monday"
 // Used to render blanks or spaces 
-const getFirstDayofMonthinWeekList = (today) => new Date(today.getFullYear(), today.getMonth(), 1).getDay()
+export const getFirstDayofMonthinWeekList = (today) => new Date(today.getFullYear(), today.getMonth(), 1).getDay()
 
 // Returns the Date Details in a single function
 export const getCurrentDateDetails = (today) => {

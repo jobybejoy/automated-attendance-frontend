@@ -2,12 +2,13 @@ import { useContext } from "react"
 import Layout from "../../containers/Layout"
 import SessionsList from "../../components/Session/SessionList/index"
 import { SessionsContext } from "../../context/SessionsContext"
+import ErrorPage from "../../pages/_Error"
 
 export default function HomeWrapper(params) {
 
   const { sessions, isError, isLoading } = useContext(SessionsContext)
 
-  if (isError) { return "Error - " + isError }
+  if (isError) { return <ErrorPage error={isError} /> }
   if (isLoading) {
     return (
       <Layout>

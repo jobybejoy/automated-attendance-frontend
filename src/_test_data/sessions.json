@@ -1,0 +1,32 @@
+[
+  {
+    "course_id": 1,
+    "course_string": "cs 675",
+    "session_id": 1,
+    "session_name": "001",
+    "course_name": "Software Architecture",
+    "term": "Fall",
+    "year": 2021,
+    "url": "/cs/675/session/001"
+  },
+  {
+    "course_id": 2,
+    "course_string": "cs 684",
+    "session_id": 4,
+    "session_name": "004",
+    "course_name": "Software Testing and Quality Assurance",
+    "term": "Fall",
+    "year": 2021,
+    "url": "/cs/684/session/004"
+  },
+  {
+    "course_id": 3,
+    "course_string": "cs 602",
+    "session_id": 7,
+    "session_name": "001",
+    "course_name": "Java Programming",
+    "term": "Fall",
+    "year": 2021,
+    "url": "/cs/602/session/001"
+  }
+]

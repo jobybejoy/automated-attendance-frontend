@@ -1,0 +1,9 @@
+{
+  "first_name": "John",
+  "last_name": "Doe ",
+  "email": "jd1122@njit.edu",
+  "dept_name": "Computer Science",
+  "phone_no": "123456839",
+  "address": "101 Barton Street, Apt 02, New York City, New York",
+  "is_staff": true
+}

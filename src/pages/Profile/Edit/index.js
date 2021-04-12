@@ -23,24 +23,19 @@ import UpdateUserProfile from "../../../api/user/updateProfile"
 import useToken from "../../../api/auth/useToken"
 import useUser from "../../../api/user/index"
 
+import ProfileLoading from "../ProfileLoading"
+import ErrorPage from "../../_Error"
+
 export default function EditProfileWrapper() {
   const { user, isError, isLoading } = useUser()
   // const { user, isLoading, isError } = useContext(UserContext)
 
   if (isLoading) {
-    return "Loading ..."
+    return <ProfileLoading />
   }
 
   if (isError) {
-    return (
-      <Layout>
-        <div className={styles.profile_container}>
-          <h2 className={styles.profile_name}>
-            User Not Found
-        </h2>
-        </div>
-      </Layout>
-    )
+    return <ErrorPage error={isError} />
   }
 
   return <EditProfile user={user} />
@@ -50,7 +45,15 @@ function EditProfile({ user }) {
 
   const { token } = useToken();
 
+  const initialErrorState = {
+    first_name: undefined,
+    last_name: undefined,
+    phone_no: undefined,
+    address: undefined
+  }
+
   const history = useHistory();
+  const [error, setError] = useState(initialErrorState)
   const [firstName, setFirstName] = useState(user?.first_name)
   const [lastName, setLastName] = useState(user?.last_name)
   const [phoneNumber, setPhoneNumber] = useState(user?.phone_no);
@@ -59,20 +62,19 @@ function EditProfile({ user }) {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    console.log({
-      firstName, lastName, phoneNumber, address
-    });
+    // console.log({
+    //   firstName, lastName, phoneNumber, address
+    // });
 
-    UpdateUserProfile(
-      { first_name: firstName, last_name: lastName, phone_no: phoneNumber, address },
-      token
-    )
-      .then(() => {
+    return UpdateUserProfile({ first_name: firstName, last_name: lastName, phone_no: phoneNumber, address }, token)
+      .then((res) => {
+        // console.log({ res })
         history.push("/profile");
+      }).catch((error) => {
+        // console.log("Error @ update profile")
+        // console.log({ error });
+        setError({ ...error })
       })
-
-
-    // !In case err have to handle it.
 
   }
 
@@ -94,44 +96,70 @@ function EditProfile({ user }) {
 
         <form onSubmit={handleSubmit}>
           <InputGroup>
-            <Label htmlFor="name">First Name</Label>
-            <Input type="text" name="name"
+            <Label htmlFor="first_name" className={error.first_name && "error"}>First Name</Label>
+            <Input type="text"
+              id="first_name"
+              name="first_name"
               placeholder="John"
               onChange={e => setFirstName(e.target.value)}
               value={firstName}
+              className={error.first_name && "error"}
               required
             />
+            {
+              error.first_name &&
+              <Helper className={"error"}>{error.first_name.message}</Helper>
+            }
+
           </InputGroup>
           <InputGroup>
-            <Label htmlFor="name">Last Name</Label>
-            <Input type="text" name="name"
+            <Label htmlFor="last_name" className={error.last_name && "error"}>Last Name</Label>
+            <Input type="text" name="last_name"
+              id="last_name"
               placeholder="Doe"
               onChange={e => setLastName(e.target.value)}
               value={lastName}
+              className={error.last_name && "error"}
               required
             />
+            {
+              error.last_name &&
+              <Helper className={"error"}>{error.last_name.message}</Helper>
+            }
           </InputGroup>
           <InputGroup>
-            <Label htmlFor="phone_number" >Phone Number</Label>
+            <Label htmlFor="phone_number" className={error.phone_no && "error"}>Phone Number</Label>
             <Input type="text" name="phone_number"
+              id="phone_number"
               placeholder="+1(551)222-0011"
               onChange={e => setPhoneNumber(e.target.value)}
               value={phoneNumber}
+              className={error.phone_no && "error"}
               required
             />
-            <Helper className={styles.helper}>Enter phone number here</Helper>
+            {
+              error.phone_no ?
+                <Helper className={"error"}>{error.phone_no.message}</Helper>
+                :
+                <Helper className={styles.helper}>Enter phone number here</Helper>
+            }
+
           </InputGroup>
           <InputGroup>
-            <Label htmlFor="address" >Address</Label>
-            {/* <pre contenteditable="true">
-              {user.address}
-            </pre> */}
+            <Label htmlFor="address" className={error.address && "error"}>Address</Label>
 
             <TextArea
+              id="address"
               value={address || "10011 Location, Flr/Apt Num, State, Country, ZIP"}
-              name="address" id="" cols="100" rows="5"
+              name="address" cols="100" rows="5"
               onChange={e => setAddress(e.target.value)}
+              className={error.address && "error"}
             />
+
+            {
+              error.address &&
+              <Helper className={"error"}>{error.address.message}</Helper>
+            }
 
           </InputGroup>
 

@@ -12,8 +12,13 @@ export default async function UpdateUserProfile(data, token) {
     },
     body: JSON.stringify(data)
   })
-    .then(data => data.json())
-    .catch(error => error)
-  // .then(data => { return { token: "TEST_TOKEN" } }).catch(err => { return { token: "TEST_TOKEN" } })
+    .then(async (res) => {
+      if (!res.ok) {
+        const error = await res.json()
+        throw error
+      }
+      return res.json();
+    })
+    .catch(err => new Error(err.json()))
 
 }

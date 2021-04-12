@@ -6,8 +6,9 @@
   color: var(--font-primary-color);
 }
 
-.input_label.error{
-  color: rgb(255, 91, 91)
+.input_label.error,.input_label.helper.error{
+  color: var(--error-color);
+  font-weight: bold;
 }
 
 .input_label.helper{

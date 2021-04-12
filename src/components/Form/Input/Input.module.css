@@ -7,9 +7,18 @@
   background-color: var(--bg-secondary-color);
 }
 
-/* .input:focus{
-  border: 2px solid var(--focus-color);
-} */
+.input:focus{
+  outline-offset: 6px;
+  outline-color: var(--focus-color);
+}
+
+.input.error:focus{
+  outline-color: var(--font-primary-color);
+}
+
+.input.error, textarea.input.error{
+  border: 2px solid var(--error-color);
+}
 
 .input.outlined{
   border: 2px solid red
@@ -19,7 +28,6 @@
   cursor: not-allowed;
   /* background-color: var(--bg-primary-color); */
   opacity: 0.8;
-  
 }
 
 textarea.input{
@@ -28,4 +36,3 @@ textarea.input{
   border:none;
   resize:none;
 }
-

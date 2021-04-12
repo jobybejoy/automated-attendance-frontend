@@ -86,13 +86,28 @@ describe("Edit Profile Page", () => {
       </MemoryRouter>
     )
 
+    // LastName
     expect(getByLabelText('Last Name')).toHaveValue(fakeUserData.last_name)
     userEvent.clear(getByLabelText('Last Name'))
-
     userEvent.type(getByLabelText('Last Name'), 'Mason')
-    // console.log(getByLabelText('Last Name'));
-
     expect(getByLabelText('Last Name')).toHaveValue("Mason")
+
+    expect(getByLabelText('First Name')).toHaveValue(fakeUserData.first_name)
+    userEvent.clear(getByLabelText('First Name'))
+    userEvent.type(getByLabelText('First Name'), 'Jaison')
+    expect(getByLabelText('First Name')).toHaveValue("Jaison")
+
+    expect(getByLabelText('Phone Number')).toHaveValue(fakeUserData.phone_no)
+    userEvent.clear(getByLabelText('Phone Number'))
+    userEvent.type(getByLabelText('Phone Number'), '+112233445566')
+    expect(getByLabelText('Phone Number')).toHaveValue("+112233445566")
+
+    expect(getByLabelText('Address')).toHaveValue(fakeUserData.address)
+    userEvent.clear(getByLabelText('Address'))
+    userEvent.type(getByLabelText('Address'), '111 Mason Street, Apt 04, New York City, New York')
+    expect(getByLabelText('Address')).toHaveValue("111 Mason Street, Apt 04, New York City, New York")
+
+
     fireEvent.click(getByRole('button', { name: /Update/i }))
 
     expect(UpdateUserProfile).toHaveBeenCalledTimes(1)

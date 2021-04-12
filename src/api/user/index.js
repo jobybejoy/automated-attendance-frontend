@@ -3,11 +3,8 @@ import useSWR from 'swr'
 import { GET_USER_URL } from "../urls"
 
 import useToken from "../auth/useToken"
+import fetcher from "../fetcher"
 
-const fetcher = (url, token) => fetch(url, {
-  headers: { Authorization: `token ${token}` }
-})
-  .then(res => res.json())
 
 // Fetches the User using SWR
 export default function useUser() {

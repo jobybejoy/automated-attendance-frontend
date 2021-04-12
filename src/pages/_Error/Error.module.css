@@ -1,16 +1,27 @@
 .ErrorContainer{
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  /* align-items: center; */
 
-  min-height: 60vh;
+  min-height: 100vh;
 
   padding: 0 4rem;
+  padding-top: 4rem;
+
+  position: absolute;
+  top:0;
+
+  z-index: 1;
+  background: var(--bg-primary-color);
+  width: 100%;
+
 }
 
-.error_status,.error_heading,.error_message,.error_message_stack{
+.error_status,.error_heading,.error_message,.error_message_stack,.error_page_header{
   margin: 0.5rem 0;
+}
+
+.error_page_header{
+  font-size: 1.4rem;
 }
 
 .error_heading{

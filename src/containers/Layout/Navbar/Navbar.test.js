@@ -1,7 +1,8 @@
 import React from 'react';
 import { render, fireEvent, cleanup, screen } from '@testing-library/react';
 
-import { Navbar, getSession } from './index';
+import { Navbar } from './index';
+import findSession from "../../../helpers/findSession"
 import { createMemoryHistory } from 'history'
 
 // import { useContext, useProvider } from "react";
@@ -61,9 +62,9 @@ describe('Navbar (Default) Component', () => {
 
 })
 
-describe("getSession() function", () => {
+describe("findSession() function", () => {
 
-  it("checks getSession() fetches the correct session", () => {
+  it("checks findSession() fetches the correct session", () => {
     const sessions = [
       { course_id: 1, session_id: 1, course_name: "Software Architecture", course_string: "cs 675", session_name: "001", term: "Fall", year: 2021 },
       { course_id: 2, session_id: 4, course_name: "Software Testing and Quality Assurance", course_string: "cs 684", session_name: "004", term: "Fall", year: 2021 },
@@ -72,12 +73,12 @@ describe("getSession() function", () => {
 
     const expected_session = { course_id: 1, session_id: 1, course_name: "Software Architecture", course_string: "cs 675", session_name: "001", term: "Fall", year: 2021 }
 
-    const selected_session = getSession({ sessions, department: "cs", course_number: "675", session_id: "001" })
+    const selected_session = findSession({ sessions, department: "cs", course_number: "675", session_id: "001" })
 
     expect(selected_session).toEqual(expected_session)
   })
 
-  it("checks getSession() doesnt filter for bad input", () => {
+  it("checks findSession() doesnt filter for bad input", () => {
     const sessions = [
       { course_id: 1, session_id: 1, course_name: "Software Architecture", course_string: "cs 675", session_name: "001", term: "Fall", year: 2021 },
       { course_id: 2, session_id: 4, course_name: "Software Testing and Quality Assurance", course_string: "cs 684", session_name: "004", term: "Fall", year: 2021 },
@@ -86,8 +87,8 @@ describe("getSession() function", () => {
 
     const expected_session = { course_id: 1, session_id: 1, course_name: "Software Architecture", course_string: "cs 675", session_name: "001", term: "Fall", year: 2021 }
 
-    // Calling getSession() w/ bad input -- departement actual -> "cs" but - invoked w/ department "ee"
-    const selected_session = getSession({ sessions, department: "ee", course_number: "675", session_id: "001" })
+    // Calling findSession() w/ bad input -- departement actual -> "cs" but - invoked w/ department "ee"
+    const selected_session = findSession({ sessions, department: "ee", course_number: "675", session_id: "001" })
 
     expect(selected_session).not.toEqual(expected_session)
   })

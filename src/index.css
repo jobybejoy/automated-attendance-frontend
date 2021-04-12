@@ -3,6 +3,8 @@
   --container-max-width: 1200px;
 
   --focus-color: red;
+
+  --error-color: rgb(255, 91, 91);
   
   /* Purple CTA  #983798 */
   --cta-color: rgb(52, 175, 159);

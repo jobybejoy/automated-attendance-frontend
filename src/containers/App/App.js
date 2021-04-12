@@ -41,10 +41,10 @@ const RequireAuth = ({ children, token }) => {
 
 const ProviderWrapper = ({ children, token }) => {
 
-  const { user, isError, isLoading } = useUser({ token });
+  const { user, isError: isUserError, isLoading: isUserLoading } = useUser({ token });
   const { sessions, isError: isSessionsError, isLoading: isSessionsLoading } = useSessions({ token });
   return (
-    <UserContext.Provider value={{ user, isError, isLoading }}>
+    <UserContext.Provider value={{ user, isError: isUserError, isLoading: isUserLoading }}>
       <SessionsContext.Provider value={{ sessions, isError: isSessionsError, isLoading: isSessionsLoading }}>
         <SkeletonTheme color="var(--bg-secondary-color)" highlightColor="var(--bg-primary-color)">
           {children}

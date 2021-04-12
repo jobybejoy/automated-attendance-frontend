@@ -1,18 +1,25 @@
 ### Navigation 
 - [X] Route based Conditional Header -- w/  Session specifc | Not
 
+### 404 Page
+- [ ] Default Route and 404 Page
+
+### Error Page
+- [x] Error Status 
+- [x] Error Details
+
 
 ### Calender Component
 
 Student Attendance Page
-- [ ] Responsive UI
+- [x] Responsive UI
 - [ ] Helper -- what each color represents
 
 Faculty Session Attendance Details
 - [x] Today -- When marking attendance
-    - [ ] CTA like UI
+    - [x] CTA like UI
 
-- [ ] Click for attendance details
+- [x] Click for attendance details
 
 - [ ] Links to pervios sessions 
 - [ ] Helper -- to click on the session to view attendance

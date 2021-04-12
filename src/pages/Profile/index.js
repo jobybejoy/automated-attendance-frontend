@@ -1,5 +1,4 @@
 import { useHistory } from "react-router-dom";
-import { useContext } from 'react';
 
 import styles from "./Profile.module.css"
 import { LayoutOnly as Layout } from "../../containers/Layout"
@@ -12,14 +11,17 @@ import back_icon from "../../assets/images/icons/navigate_before.svg"
 
 import useUser from "../../api/user/index"
 
+import Skeleton from 'react-loading-skeleton';
 import ErrorPage from "../../pages/_Error"
+
+import ProfileLoading from "./ProfileLoading"
 
 export default function ProfileWrapper() {
 
   const { user, isError, isLoading } = useUser()
 
   if (isLoading) {
-    return "Loading ..."
+    return <ProfileLoading />
   }
 
   if (isError) {
@@ -38,10 +40,10 @@ export function Profile({ user }) {
   return (
     <Layout>
       <div className={styles.profile_container}>
-        <Button onClick={() => { history.push("/") }} style={{ paddingRight: "1rem", marginBottom: "2rem" }}>
+        <Button aria-label="Go Back" onClick={() => { history.push("/") }} style={{ paddingRight: "1rem", marginBottom: "2rem" }}>
           <img src={back_icon} alt="Back" /> Go Back
         </Button>
-        <Link to="/profile/edit"><Button className={styles.profile_edit_btn} value="edit" /></Link>
+        <Link to="/profile/edit"><Button className={styles.profile_edit_btn} aria-label="Edit Profile" value="edit" /></Link>
         <div className={styles.profile_image_container}>
           <img src={face_emoji} alt="" />
         </div>

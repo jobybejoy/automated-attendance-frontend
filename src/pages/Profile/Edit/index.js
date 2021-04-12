@@ -88,7 +88,17 @@ function EditProfile({ user }) {
       }).catch((error) => {
         // console.log("Error @ update profile")
         // console.log({ error });
-        setError({ ...error })
+        setError(error)
+        toast.error("🙈 Opps! Something is not right", {
+          position: "bottom-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+
       })
 
   }
@@ -165,7 +175,7 @@ function EditProfile({ user }) {
 
             <TextArea
               id="address"
-              value={address || "10011 Location, Flr/Apt Num, State, Country, ZIP"}
+              value={address}
               name="address" cols="100" rows="5"
               onChange={e => setAddress(e.target.value)}
               className={error.address && "error"}

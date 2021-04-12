@@ -19,6 +19,6 @@ export default async function UpdateUserProfile(data, token) {
       }
       return res.json();
     })
-    .catch(err => new Error(err.json()))
+  // .catch(err => new Error(err.json()))
 
 }

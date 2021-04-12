@@ -15,8 +15,10 @@ import ButtonGroup from "../../../components/Button/ButtonGroup"
 import { Button, CallToActionButton } from '../../../components/Button/index'
 
 import { TextArea } from "../../../components/Form/Input"
+import { toast } from 'react-toastify';
 
 // import { UserContext } from "../../../context/UserContext"
+
 
 
 import UpdateUserProfile from "../../../api/user/updateProfile"
@@ -69,7 +71,20 @@ function EditProfile({ user }) {
     return UpdateUserProfile({ first_name: firstName, last_name: lastName, phone_no: phoneNumber, address }, token)
       .then((res) => {
         // console.log({ res })
-        history.push("/profile");
+        toast.success("😎 Profile Looks Good!", {
+          position: "bottom-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+
+        setTimeout(() => {
+          history.push("/profile");
+        }, 3000);
+
       }).catch((error) => {
         // console.log("Error @ update profile")
         // console.log({ error });
@@ -81,7 +96,7 @@ function EditProfile({ user }) {
   return (
     <Layout>
       <div className={styles.profile_container}>
-        <Button onClick={() => { history.goBack() }} style={{ paddingRight: "1rem", marginBottom: "1rem" }}>
+        <Button onClick={() => { history.push("/profile") }} style={{ paddingRight: "1rem", marginBottom: "1rem" }}>
           <img src={back_icon} alt="Back" /> Go Back
         </Button>
         <div className={styles.profile_image_container}>

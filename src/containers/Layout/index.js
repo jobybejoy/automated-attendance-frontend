@@ -1,7 +1,8 @@
 import styles from './Layout.module.css';
 import Nav from "./Navbar"
-
 import Footer from "./Footer"
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Layout({ children }) {
   return (
@@ -11,6 +12,17 @@ export default function Layout({ children }) {
         {children}
       </div>
       <Footer />
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   )
 }
@@ -22,6 +34,17 @@ export function LayoutOnly({ children }) {
         {children}
       </div>
       <Footer />
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   )
 }
